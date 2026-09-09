@@ -4,6 +4,8 @@ description: |
   and repository context, and reports actionable remediation while consolidating
   duplicate failures.
 
+engine: claude
+
 on:
   workflow_run:
     workflows: ["Button App Tests"]
