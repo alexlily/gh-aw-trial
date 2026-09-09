@@ -6,7 +6,7 @@ description: |
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["Button App Tests"]
     types: [completed]
     branches: [main]
 
