@@ -37,7 +37,7 @@ likely root cause and give maintainers specific, evidence-backed next steps.
 
 ## Run context
 
-- **Repository**: scriptdash/scriptdash
+- **Repository**: alexlily/gh-aw-trial
 - **Workflow run**: ${{ github.event.workflow_run.id }}
 - **Run URL**: ${{ github.event.workflow_run.html_url }}
 - **Head SHA**: ${{ github.event.workflow_run.head_sha }}
