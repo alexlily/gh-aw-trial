@@ -21,6 +21,10 @@ permissions:
   issues: read
   pull-requests: read
 
+tools:
+  github:
+    toolsets: [default, actions]
+
 safe-outputs:
   create-issue:
     title-prefix: "[CI failure] "
