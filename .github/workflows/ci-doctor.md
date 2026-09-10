@@ -12,8 +12,17 @@ on:
     types: [completed]
     branches: [main]
   workflow_dispatch:
+    inputs:
+      run_url:
+        description: "URL of a specific past workflow run to diagnose (e.g. https://github.com/owner/repo/actions/runs/12345). Leave blank to investigate the run that triggered this dispatch, if any."
+        required: false
+        type: string
 
 if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'failure' }}
+
+concurrency:
+  group: "gh-aw-${{ github.workflow }}-${{ github.event_name == 'workflow_dispatch' && github.run_id || 'auto' }}"
+  job-discriminator: ${{ github.run_id }}
 
 permissions:
   actions: read
@@ -42,9 +51,15 @@ likely root cause and give maintainers specific, evidence-backed next steps.
 ## Run context
 
 - **Repository**: alexlily/gh-aw-trial
+- **Manually specified run URL** (if set, investigate this run instead of anything below;
+  extract the numeric run ID from its trailing path segment and use it with the Actions
+  tools): ${{ github.event.inputs.run_url }}
 - **Workflow run**: ${{ github.event.workflow_run.id }}
 - **Run URL**: ${{ github.event.workflow_run.html_url }}
 - **Head SHA**: ${{ github.event.workflow_run.head_sha }}
+
+If neither a manually specified run URL nor a workflow run ID above is available, stop
+and report a missing_data condition rather than guessing which run to investigate.
 
 ## Investigation protocol
 
