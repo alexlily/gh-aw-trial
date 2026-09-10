@@ -7,7 +7,7 @@ function ToggleButton() {
 
   return (
     <button
-      onClick={() => setColor((prev) => (prev === 'green' ? 'red' : 'green'))}
+      onClick={() => setColor((prev) => (prev === 'green' ? 'green' : 'red'))}
       style={{ backgroundColor: color, color: 'white', padding: '1rem 2rem', fontSize: '1.25rem' }}
     >
       button
