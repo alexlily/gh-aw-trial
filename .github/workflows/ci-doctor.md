@@ -4,7 +4,7 @@ description: |
   and repository context, and reports actionable remediation while consolidating
   duplicate failures.
 
-engine: claude
+engine: codex
 
 on:
   workflow_run:
